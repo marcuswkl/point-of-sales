@@ -27,18 +27,17 @@ int membership_status;
 printf("Please select your membership status :\n",membership_status);
 printf("1 ---> Member\n");
 printf("2 ---> Non-member\n\n");
-scanf("         %d",&membership_status);
+scanf("%d",&membership_status);
 
 if (membership_status== 1)
     {
-        printf("You're a member");
+        printf("Welcome back, Best Price's member.");
     }
 
 else
 {
-    printf("You're a non member.");
+    printf("Please join our membership to enjoy member's benefits.");
 }
-
 
 	getch();
 	return 0;
