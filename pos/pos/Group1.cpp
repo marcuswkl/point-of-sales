@@ -48,7 +48,15 @@ int main(void)
 
 	scanf_s("%d", &option);
 	switch (option) {
-		case 1: printf("Option1");
+		case 1: printf("+-------------+--------------------+-------------+-----------------+\n");
+			printf("| ProductCode | ProductDescription | RetailPrice | SpecialDiscount |\n");
+			printf("+-------------+--------------------+-------------+-----------------+\n");
+			printf("|      101    | Wall Scrapper      |    100.00   |       -         |\n");
+			printf("|      202    | Tiles Waxes        |    350.00   |       -         |\n");
+			printf("|      303    | Mud/Tar Remover    |    500.00   |   20%% Discount  |\n");
+			printf("|      404    | Dry Blower         |    850.00   |   25%% Discount  |\n");
+			printf("+-------------+--------------------+-------------+-----------------+\n");
+			printf("                      Diagram 1: Product Details               ");
 		break;
 		case 2: printf("Option2");
 		break;
