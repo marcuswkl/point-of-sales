@@ -1,6 +1,2 @@
 ﻿  option2.cpp
-D:\Projects\GitHub\pointofsales\pos\pos\option2.cpp(12): warning C4473: 'scanf_s' : not enough arguments passed for format string
-  D:\Projects\GitHub\pointofsales\pos\pos\option2.cpp(12): note: placeholders and their parameters expect 2 variadic arguments, but 1 were provided
-  D:\Projects\GitHub\pointofsales\pos\pos\option2.cpp(12): note: the missing variadic argument 2 is required by format string '%s'
-  D:\Projects\GitHub\pointofsales\pos\pos\option2.cpp(12): note: this argument is used as a buffer size
   pos.vcxproj -> D:\Projects\GitHub\pointofsales\pos\Debug\pos.exe
