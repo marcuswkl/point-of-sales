@@ -1,0 +1,5 @@
+﻿  Group1.cpp
+D:\Projects\GitHub\pointofsales\pos\pos\Group1.cpp(8): warning C4129: '.': unrecognized character escape sequence
+D:\Projects\GitHub\pointofsales\pos\pos\Group1.cpp(18): warning C4129: '_': unrecognized character escape sequence
+D:\Projects\GitHub\pointofsales\pos\pos\Group1.cpp(21): warning C4101: 'continue_name': unreferenced local variable
+  pos.vcxproj -> D:\Projects\GitHub\pointofsales\pos\Debug\pos.exe
