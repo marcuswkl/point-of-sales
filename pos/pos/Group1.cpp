@@ -47,85 +47,102 @@ int main(void)
 	printf("Option 5 : Exit\n");
 
 	int code, anymoreItems, wallScrapper = 0, tilesWaxes = 0, mudtarRemover = 0, dryBlower = 0, quantity;
-	double wallScrapperST, tilesWaxesST, mudtarRemoverST, dryBlowerST, productGrandTotal;
+	double wallScrapperST, tilesWaxesST, mudtarRemoverST, dryBlowerST, productGrandTotal, distance, charges;
 
 	scanf_s("%d", &option);
 	switch (option) {
 
 	case 1: printf("+-------------+--------------------+-------------+-----------------+\n");
-		printf("| ProductCode | ProductDescription | RetailPrice | SpecialDiscount |\n");
-		printf("+-------------+--------------------+-------------+-----------------+\n");
-		printf("|      101    | Wall Scrapper      |    100.00   |       -         |\n");
-		printf("|      202    | Tiles Waxes        |    350.00   |       -         |\n");
-		printf("|      303    | Mud/Tar Remover    |    500.00   |   20%% Discount  |\n");
-		printf("|      404    | Dry Blower         |    850.00   |   25%% Discount  |\n");
-		printf("+-------------+--------------------+-------------+-----------------+\n");
-		printf("                           Product Details                            ");
-		break;
+			printf("| ProductCode | ProductDescription | RetailPrice | SpecialDiscount |\n");
+			printf("+-------------+--------------------+-------------+-----------------+\n");
+			printf("|      101    | Wall Scrapper      |    100.00   |       -         |\n");
+			printf("|      202    | Tiles Waxes        |    350.00   |       -         |\n");
+			printf("|      303    | Mud/Tar Remover    |    500.00   |   20%% Discount  |\n");
+			printf("|      404    | Dry Blower         |    850.00   |   25%% Discount  |\n");
+			printf("+-------------+--------------------+-------------+-----------------+\n");
+			printf("                           Product Details                            ");
+			break;
 
 	case 2: do {
-			printf("Please key in product code:\n");
-			scanf_s("%d", &code);
-			if (code == 101) {
-				printf("Wall Scrapper\n");
-				printf("Please key in quantity:\n");
-				scanf_s("%d", &quantity);
-				wallScrapper += quantity;
-				printf("Do you have any more items? Please input a number to select an option:\n");
-				printf("1.Yes\n");
-				printf("2.No\n");
-				scanf_s("%d", &anymoreItems);
-			}
-			else if (code == 202) {
-				printf("Tiles Waxes\n");
-				printf("Please key in quantity:\n");
-				scanf_s("%d", &quantity);
-				tilesWaxes += quantity;
-				printf("Do you have any more items? Please input a number to select an option:\n");
-				printf("1.Yes\n");
-				printf("2.No\n");
-				scanf_s("%d", &anymoreItems);
-			}
-			else if (code == 303) {
-				printf("Mud/Tar Remover\n");
-				printf("Please key in quantity:\n");
-				scanf_s("%d", &quantity);
-				mudtarRemover += quantity;
-				printf("Do you have any more items? Please input a number to select an option:\n");
-				printf("1.Yes\n");
-				printf("2.No\n");
-				scanf_s("%d", &anymoreItems);
-			}
-			else if (code == 404) {
-				printf("Dry Blower\n");
-				printf("Please key in quantity:\n");
-				scanf_s("%d", &quantity);
-				dryBlower += quantity;
-				printf("Do you have any more items? Please input a number to select an option:\n");
-				printf("1.Yes\n");
-				printf("2.No\n");
-				scanf_s("%d", &anymoreItems);
-			}
-			else {
-				printf("Error 404 Product Not Found!");
-			}
-		} while (anymoreItems == 1);
+				printf("Please key in product code:\n");
+				scanf_s("%d", &code);
+				if (code == 101) {
+					printf("Wall Scrapper\n");
+					printf("Please key in quantity:\n");
+					scanf_s("%d", &quantity);
+					wallScrapper += quantity;
+					printf("Do you have any more items? Please input a number to select an option:\n");
+					printf("1.Yes\n");
+					printf("2.No\n");
+					scanf_s("%d", &anymoreItems);
+				}
+				else if (code == 202) {
+					printf("Tiles Waxes\n");
+					printf("Please key in quantity:\n");
+					scanf_s("%d", &quantity);
+					tilesWaxes += quantity;
+					printf("Do you have any more items? Please input a number to select an option:\n");
+					printf("1.Yes\n");
+					printf("2.No\n");
+					scanf_s("%d", &anymoreItems);
+				}
+				else if (code == 303) {
+					printf("Mud/Tar Remover\n");
+					printf("Please key in quantity:\n");
+					scanf_s("%d", &quantity);
+					mudtarRemover += quantity;
+					printf("Do you have any more items? Please input a number to select an option:\n");
+					printf("1.Yes\n");
+					printf("2.No\n");
+					scanf_s("%d", &anymoreItems);
+				}
+				else if (code == 404) {
+					printf("Dry Blower\n");
+					printf("Please key in quantity:\n");
+					scanf_s("%d", &quantity);
+					dryBlower += quantity;
+					printf("Do you have any more items? Please input a number to select an option:\n");
+					printf("1.Yes\n");
+					printf("2.No\n");
+					scanf_s("%d", &anymoreItems);
+				}
+				else {
+					printf("Error 404 Product Not Found!");
+				}
+			} while (anymoreItems == 1);
 
-		wallScrapperST = wallScrapper * 100;
-		tilesWaxesST = tilesWaxes * 100;
-		mudtarRemoverST = mudtarRemover * 100 * 0.8;
-		dryBlowerST = dryBlower * 100 * 0.75;
-		productGrandTotal = wallScrapperST + tilesWaxesST + mudtarRemoverST + dryBlowerST;
+			wallScrapperST = wallScrapper * 100;
+			tilesWaxesST = tilesWaxes * 100;
+			mudtarRemoverST = mudtarRemover * 100 * 0.8;
+			dryBlowerST = dryBlower * 100 * 0.75;
+			productGrandTotal = wallScrapperST + tilesWaxesST + mudtarRemoverST + dryBlowerST;
 
-		printf("Your subtotal for Wall Scrapper is RM%.2lf\n", wallScrapperST);
-		printf("Your subtotal for Tiles Waxes is RM%.2lf\n", tilesWaxesST);
-		printf("Your subtotal for Mud/Tar Remover is RM%.2lf\n", mudtarRemoverST);
-		printf("Your subtotal for Dry Blower is RM%.2lf\n", dryBlowerST);
-		printf("Your grand total for all the products is RM%.2lf\n", productGrandTotal);
-		break;
+			printf("Your subtotal for Wall Scrapper is RM%.2lf\n", wallScrapperST);
+			printf("Your subtotal for Tiles Waxes is RM%.2lf\n", tilesWaxesST);
+			printf("Your subtotal for Mud/Tar Remover is RM%.2lf\n", mudtarRemoverST);
+			printf("Your subtotal for Dry Blower is RM%.2lf\n", dryBlowerST);
+			printf("Your grand total for all the products is RM%.2lf\n", productGrandTotal);
+			break;
 
-	case 3: printf("Option3");
-		break;
+	case 3: printf("Please key in delivery destination's distance(KM)\n");
+			scanf_s("%lf", &distance);
+
+			if (distance <= 30)
+			{
+				charges = 50.00;
+				printf("Your delivery charges is RM%.2lf", charges);
+			}
+			else if (distance > 30 && distance <= 100)
+			{
+				distance -= 30;
+				charges = 50 + distance * 3;
+				printf("Your delivery charges is RM%.2lf", charges);
+			}
+			else
+			{
+				printf("No delivery service available in your area.Sorry for any inconvenience.");
+			}
+			break;
 
 	case 4: printf("Option4");
 		break;
