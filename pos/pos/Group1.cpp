@@ -21,6 +21,10 @@ void askAnymoreItems() {
 	scanf_s("%d", &anymoreItems);
 }
 
+void calculateSubtotal(const char subtotalName[], double subtotal) {
+	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal);
+}
+
 int main(void)
 {
 	printf("  ______               __        ______        __                  _______         __ __ \n");
@@ -115,11 +119,10 @@ int main(void)
 			dryBlowerST = dryBlower * 100 * 0.75;
 			productGrandTotal = wallScrapperST + tilesWaxesST + mudtarRemoverST + dryBlowerST;
 
-			printf("Your subtotal for Wall Scrapper is RM%.2lf\n", wallScrapperST);
-			printf("Your subtotal for Tiles Waxes is RM%.2lf\n", tilesWaxesST);
-			printf("Your subtotal for Mud/Tar Remover is RM%.2lf\n", mudtarRemoverST);
-			printf("Your subtotal for Dry Blower is RM%.2lf\n", dryBlowerST);
-			printf("Your grand total for all the products is RM%.2lf\n", productGrandTotal);
+			calculateSubtotal("Wall Scrapper", wallScrapperST);
+			calculateSubtotal("Tiles Waxes", tilesWaxesST);
+			calculateSubtotal("Mud/Tar Remover", mudtarRemoverST);
+			calculateSubtotal("Dry Blower", dryBlowerST);
 			break;
 
 			case 3: printf("Please key in delivery destination's distance(KM)\n");
@@ -138,11 +141,11 @@ int main(void)
 					}
 					else
 					{
-						printf("No delivery service available in your area.Sorry for any inconvenience.");
+						printf("No delivery service available in your area. Sorry for any inconvenience.");
 					}
 
 
-			case 4: total_bill = productGrandTotal - charges;
+			case 4: total_bill = productGrandTotal + charges;
 					grand_total = total_bill + (total_bill * 0.1);
 					total_discount1 = grand_total * 0.1;
 					total_discount2 = grand_total * 0.12;
