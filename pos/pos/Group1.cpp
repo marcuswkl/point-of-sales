@@ -11,7 +11,7 @@ double wallScrapperST, tilesWaxesST, mudtarRemoverST, dryBlowerST, productGrandT
 int main(void)
 {
 	printf("  ______               __        ______        __                  _______         __ __ \n");
-	printf("      __ \.-----.-----.|  |_     |   __ \.----.|__|.----.-----.     |   |   |.---.-.|  |  | \n");
+	printf("      __ \.-----.-----.|  |_     |   __  \.---.|__|.----.-----.     |   |   |.---.-.|  |  | \n");
 	printf(" |   __ <|  -__|__ --||   _|    |    __/|   _||  ||  __|  -__|    |       ||  _  ||  |  | \n");
 	printf(" |______/|_____|_____||____|    |___|   |__|  |__||____|_____|    |__|_|__||___._||__|__|\n\n");
 	printf("Hi, we are the Best Price Mall which has the best price in the market. \n");
@@ -59,15 +59,15 @@ int main(void)
 			scanf_s("%d", &option);
 			switch (option) {
 
-			case 1: printf("+-------------+--------------------+-------------+-----------------+\n");
-					printf("| ProductCode | ProductDescription | RetailPrice | SpecialDiscount |\n");
-					printf("+-------------+--------------------+-------------+-----------------+\n");
-					printf("|      101    | Wall Scrapper      |    100.00   |       -         |\n");
-					printf("|      202    | Tiles Waxes        |    350.00   |       -         |\n");
-					printf("|      303    | Mud/Tar Remover    |    500.00   |   20%% Discount  |\n");
-					printf("|      404    | Dry Blower         |    850.00   |   25%% Discount  |\n");
-					printf("+-------------+--------------------+-------------+-----------------+\n");
-					printf("                           Product Details                            ");
+			case 1: printf("                           Product Details                           \n");
+					printf("++==============++=====================++==============++==================++\n");
+					printf("|| Product Code || Product Description || Retail Price || Special Discount ||\n");
+					printf("++==============++=====================++==============++==================++\n");
+					printf("||      101     ||    Wall Scrapper    ||    100.00    ||        --        ||\n");
+					printf("||      202     ||    Tiles Waxes      ||    350.00    ||        --        ||\n");
+					printf("||      303     ||    Mud/Tar Remover  ||    500.00    ||   20%% Discount   ||\n");
+					printf("||      404     ||    Dry Blower       ||    850.00    ||   25%% Discount   ||\n");
+					printf("++==============++=====================++==============++==================++\n");
 					break;
 
 			case 2: do	{
