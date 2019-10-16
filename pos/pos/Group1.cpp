@@ -8,6 +8,19 @@ int option, end = 0;
 int code, anymoreItems, wallScrapper = 0, tilesWaxes = 0, mudtarRemover = 0, dryBlower = 0, quantity;
 double wallScrapperST, tilesWaxesST, mudtarRemoverST, dryBlowerST, productGrandTotal, total_bill, grand_total, total_discount1, total_discount2, pay_amount, pay_amount2, distance, charges;
 
+void keyInItems(const char itemName[]) {
+	printf("%s\n", itemName);
+	printf("Please key in quantity:\n");
+	scanf_s("%d", &quantity);
+}
+
+void askAnymoreItems() {
+	printf("Do you have any more items? Please input a number to select an option:\n");
+	printf("1.Yes\n");
+	printf("2.No\n");
+	scanf_s("%d", &anymoreItems);
+}
+
 int main(void)
 {
 	printf("  ______               __        ______        __                  _______         __ __ \n");
@@ -54,12 +67,10 @@ int main(void)
 			printf("Option 4 : Calculate total pay amount\n");
 			printf("Option 5 : Exit\n");
 
-
-
 			scanf_s("%d", &option);
 			switch (option) {
 
-			case 1: printf("                           Product Details                           \n");
+			case 1: printf("                                Product Details                              \n");
 					printf("++==============++=====================++==============++==================++\n");
 					printf("|| Product Code || Product Description || Retail Price || Special Discount ||\n");
 					printf("++==============++=====================++==============++==================++\n");
@@ -74,44 +85,24 @@ int main(void)
 							printf("Please key in product code:\n");
 							scanf_s("%d", &code);
 							if (code == 101) {
-								printf("Wall Scrapper\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								keyInItems("Wall Scrapper");
 								wallScrapper += quantity;
-								printf("Do you have any more items? Please input a number to select an option:\n");
-								printf("1.Yes\n");
-								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								askAnymoreItems();
 							}
 							else if (code == 202) {
-								printf("Tiles Waxes\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								keyInItems("Tiles Waxes");
 								tilesWaxes += quantity;
-								printf("Do you have any more items? Please input a number to select an option:\n");
-								printf("1.Yes\n");
-								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								askAnymoreItems();
 							}
 							else if (code == 303) {
-								printf("Mud/Tar Remover\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								keyInItems("Mud/Tar Remover");
 								mudtarRemover += quantity;
-								printf("Do you have any more items? Please input a number to select an option:\n");
-								printf("1.Yes\n");
-								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								askAnymoreItems();
 							}
 							else if (code == 404) {
-								printf("Dry Blower\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								keyInItems("Dry Blower");
 								dryBlower += quantity;
-								printf("Do you have any more items? Please input a number to select an option:\n");
-								printf("1.Yes\n");
-								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								askAnymoreItems();
 							}
 							else {
 								printf("Error 404 Product Not Found!");
