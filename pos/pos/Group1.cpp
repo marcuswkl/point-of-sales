@@ -150,16 +150,7 @@ else
 			}
 
 
-	case 4: printf("Option4");
-		break;
-
-	case 5: exit(0);
-		break;
-
-	default: printf("404 Option Not Found!");
-	}
-
-    total_bill= productGrandTotal-charges;
+	case 4:total_bill= productGrandTotal-charges;
     //need to add delivery charges
     grand_total= total_bill+(total_bill*0.1);
     total_discount= grand_total*0.1;
@@ -197,6 +188,15 @@ else
         printf("No discount will be given:(\n\n");
         printf("The total amount is RM%.2f\n",grand_total);
     }
+		break;
+
+	case 5: exit(0);
+		break;
+
+	default: printf("404 Option Not Found!");
+	}
+
+
 	getch();
 	return 0;
 }
