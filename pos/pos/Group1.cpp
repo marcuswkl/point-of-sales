@@ -10,25 +10,29 @@ double wallScrapperST, tilesWaxesST, mudtarRemoverST, dryBlowerST, productGrandT
 
 int main(void)
 {
-	printf("  ______               __        ______        __                  _______         __ __ \n");
-	printf("      __ \.-----.-----.|  |_     |   __  \.---.|__|.----.-----.     |   |   |.---.-.|  |  | \n");
-	printf(" |   __ <|  -__|__ --||   _|    |    __/|   _||  ||  __|  -__|    |       ||  _  ||  |  | \n");
-	printf(" |______/|_____|_____||____|    |___|   |__|  |__||____|_____|    |__|_|__||___._||__|__|\n\n");
-	printf("Hi, we are the Best Price Mall which has the best price in the market. \n");
-	printf("If you can find anything cheaper than our shop then..... \n");
+	printf("        ___       __    ______                                 _____        \n");
+	printf("        __ |     / /_______  /__________________ ________      __  /______  \n");
+	printf("        __ | /| / /_  _ \\\\_  /_  ___/  __ \\_  __ `__ \\  _ \\     _  __/  __ \ \n");
+	printf("        __ |/ |/ / /  __/  / / /__ / /_/ /  / / / / /  __/     / /_ / /_/ / \n");
+	printf("        `____/|__/  \\___//_/  \\___/ \\____//_/ /_/ /_/\\___/      \\__/ \\____/ \n\n");
+	printf("________            _____________       _____                 ______  ___      ___________\n");
+	printf("___  __ )_____________  /___  __ \\\\_________(_)__________      ___   |/  /_____ ___  /__  /\n");
+	printf("__  __  |  _ \\_  ___/  __/_  /_/ /_  ___/_  /_  ___/  _ \\     __  /|_/ /_  __ `/_  /__  / \n");
+	printf("_  /_/ //  __/(__  )/ /_ _  ____/_  /   _  / / /__ /  __/     _  /  / / / /_/ /_  / _  /  \n");
+    printf("/_____/ \\___//____/ \\__/ /_/     /_/    /_/  \\___/ \\___/      /_/  /_/  \\__,_/ /_/  /_/   \n\n\n");
 
-	printf(" __  __ __           __ __             _______         __                __       \n");
-	printf("|  |/  |__|.-----.--|  |  |.--.--.    |     __|.-----.|  |_.-----.--.--.|  |_     \n");
-	printf("|     <|  ||     |  _  |  ||  |  |    |    |  ||  -__||   _|  _  |  |  ||   _|    \n");
-	printf("|__|\__ |__||__|__|_____|__||___  |    |_______||_____||____|_____|_____||____|    \n");
-	printf("                           |_____|                                                \n\n");
+    printf("Enter any key to continue: \n\n\n");
+
+    getch();
+	printf("Hi, we are the Best Price Mall which has the best price in the market. \n");
+	printf("The below are the promotions that we are having in our store.\n\n");
     printf("Member discounts:\n");
     printf("10%% Discount will be given for purchases more than RM800\n");
     printf("12%% Discount will be given for purchases more than RM1000\n");
     printf("(condition applies only for available for members)\n\n");
     printf("Enter any key to continue: \n");
 
-    _getch();
+    getch();
 
 	printf("Please select your membership status :\n");
 	printf("1 ---> Member\n");
@@ -56,7 +60,7 @@ int main(void)
 
 
 
-			scanf_s("%d", &option);
+			scanf("%d", &option);
 			switch (option) {
 
 			case 1: printf("                           Product Details                           \n");
@@ -71,47 +75,47 @@ int main(void)
 					break;
 
 			case 2: do	{
-							printf("Please key in product code:\n");
-							scanf_s("%d", &code);
+							printf("\nPlease key in product code:\n");
+							scanf("%d", &code);
 							if (code == 101) {
-								printf("Wall Scrapper\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								printf("\nWall Scrapper\n");
+								printf("\nPlease key in quantity:\n");
+								scanf("%d", &quantity);
 								wallScrapper += quantity;
 								printf("Do you have any more items? Please input a number to select an option:\n");
 								printf("1.Yes\n");
 								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								scanf("%d", &anymoreItems);
 							}
 							else if (code == 202) {
-								printf("Tiles Waxes\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								printf("\nTiles Waxes\n");
+								printf("\nPlease key in quantity:\n");
+								scanf("%d", &quantity);
 								tilesWaxes += quantity;
 								printf("Do you have any more items? Please input a number to select an option:\n");
 								printf("1.Yes\n");
 								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								scanf("%d", &anymoreItems);
 							}
 							else if (code == 303) {
-								printf("Mud/Tar Remover\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								printf("\nMud/Tar Remover\n");
+								printf("\nPlease key in quantity:\n");
+								scanf("%d", &quantity);
 								mudtarRemover += quantity;
 								printf("Do you have any more items? Please input a number to select an option:\n");
 								printf("1.Yes\n");
 								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								scanf("%d", &anymoreItems);
 							}
 							else if (code == 404) {
-								printf("Dry Blower\n");
-								printf("Please key in quantity:\n");
-								scanf_s("%d", &quantity);
+								printf("\nDry Blower\n");
+								printf("\nPlease key in quantity:\n");
+								scanf("%d", &quantity);
 								dryBlower += quantity;
 								printf("Do you have any more items? Please input a number to select an option:\n");
 								printf("1.Yes\n");
 								printf("2.No\n");
-								scanf_s("%d", &anymoreItems);
+								scanf("%d", &anymoreItems);
 							}
 							else {
 								printf("Error 404 Product Not Found!");
@@ -132,34 +136,36 @@ int main(void)
 			break;
 
 			case 3: printf("Please key in delivery destination's distance(KM)\n");
-					scanf_s("%lf", &distance);
+					scanf("%lf", &distance);
 
 					if (distance <= 30)
 					{
 						charges = 50.00;
-						printf("Your delivery charges is RM%.2lf", charges);
+						printf("Your delivery charges is RM%.2lf\n", charges);
 					}
 					else if (distance > 30 && distance <= 100)
 					{
 						distance -= 30;
 						charges = 50 + distance * 3;
-						printf("Your delivery charges is RM%.2lf", charges);
+						printf("Your delivery charges is RM%.2lf\n", charges);
 					}
 					else
 					{
-						printf("No delivery service available in your area.Sorry for any inconvenience.");
+						printf("No delivery service available in your area.Sorry for any inconvenience.\n");
 					}
-
+            break;
 
 			case 4: total_bill = productGrandTotal - charges;
 					grand_total = total_bill + (total_bill * 0.1);
-					total_discount1 = grand_total * 0.1;
-					total_discount2 = grand_total * 0.12;
 					pay_amount = grand_total - (total_discount1);
 					pay_amount2 = grand_total - (total_discount2);
 
-					printf("Total bill= RM%.2f\n", total_bill);
-					printf("Grand Total= RM%.2f\n\n", grand_total);
+                    printf("++==============++=====================++\n");
+                    printf("||   Payment    ||      Amount         ||\n");
+                    printf("++==============||=====================||\n");
+                    printf("||Total bill    ||      RM%.2f         ||\n", total_bill);
+					printf("||Grand Total   ||      RM%.2f         ||\n", grand_total);
+                    printf("++=====================================++\n");
 
 					if (membership_status == 1 && total_bill >= 800 && total_bill <= 1000)
 					{
@@ -196,7 +202,6 @@ int main(void)
 			default: printf("404 Option Not Found!");
 			}
 	} while (end == 0);
-	
 	exit(0);
 
 	_getch();
