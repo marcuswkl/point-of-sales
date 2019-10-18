@@ -2,11 +2,9 @@
 #include <stdlib.h>
 #include <conio.h>
 
-char continue_name;
-int membership_status;
-int option, end = 0;
-int code, anymoreItems, wallScrapper = 0, tilesWaxes = 0, mudtarRemover = 0, dryBlower = 0, quantity;
-double wallScrapperST, tilesWaxesST, mudtarRemoverST, dryBlowerST, productGrandTotal, total_bill, grand_total, total_discount1, total_discount2, pay_amount, pay_amount2, distance, charges;
+char continueName;
+int membership;option, end = 0, code, anymoreItems, wallS = 0, tilesW = 0, mudR = 0, dryB = 0, quantity;
+double wallS_ST, tilesW_ST, mudR_ST, dryB_ST, product_GT, distance, charges, totalBill, grandTotal, discount1, discount2, payAmount1, payAmount2;
 
 void keyInItems(const char itemName[]);
 void askAnymoreItems();
@@ -29,8 +27,8 @@ int main(void)
 
     _getch();
 
-	printf("Hi, we are the Best Price Mall which has the best price in the market. \n");
-	printf("The below are the promotions that we are having in our store.\n\n");
+	printf("Hi, welcome to Best Price Mall which has the best price in the market. \n");
+	printf("These are the promotions that we are having in our store.\n\n");
     printf("Member discounts:\n");
     printf("10%% Discount will be given for purchases more than RM800\n");
     printf("12%% Discount will be given for purchases more than RM1000\n");
@@ -40,11 +38,11 @@ int main(void)
     _getch();
 
 	printf("Please select your membership status :\n");
-	printf("1 ---> Member\n");
-	printf("2 ---> Non-member\n\n");
-	scanf_s(" %d", &membership_status);
+	printf("1. Member\n");
+	printf("2. Non-member\n\n");
+	scanf_s(" %d", &membership);
 
-	if (membership_status == 1)
+	if (membership == 1)
 	{
 		printf("Welcome back, Best Price's member.\n\n");
 	}
@@ -83,22 +81,22 @@ int main(void)
                 scanf_s("%d", &code);
                 if (code == 101) {
                   keyInItems("Wall Scrapper");
-                  wallScrapper += quantity;
+                  wallS += quantity;
                   askAnymoreItems();
                 }
                 else if (code == 202) {
                   keyInItems("Tiles Waxes");
-                  tilesWaxes += quantity;
+                  tilesW += quantity;
                   askAnymoreItems();
                 }
                 else if (code == 303) {
                   keyInItems("Mud/Tar Remover");
-                  mudtarRemover += quantity;
+                  mudR += quantity;
                   askAnymoreItems();
                 }
 				else if (code == 404) {
 					keyInItems("Dry Blower");
-					dryBlower += quantity;
+					dryB += quantity;
 					askAnymoreItems();
 				}
                 else {
@@ -106,16 +104,16 @@ int main(void)
                 }
               } while (anymoreItems == 1);
 
-			wallScrapperST = wallScrapper * 100;
-			tilesWaxesST = tilesWaxes * 100;
-			mudtarRemoverST = mudtarRemover * 100 * 0.8;
-			dryBlowerST = dryBlower * 100 * 0.75;
-			productGrandTotal = wallScrapperST + tilesWaxesST + mudtarRemoverST + dryBlowerST;
+			wallS_ST = wallS * 100;
+			tilesW_ST = tilesW * 100;
+			mudR_ST = mudR * 100 * 0.8;
+			dryB_ST = dryB * 100 * 0.75;
+			product_GT = wallS_ST + tilesW_ST + mudR_ST + dryB_ST;
 
-			calculateSubtotal("Wall Scrapper", wallScrapperST);
-			calculateSubtotal("Tiles Waxes", tilesWaxesST);
-			calculateSubtotal("Mud/Tar Remover", mudtarRemoverST);
-			calculateSubtotal("Dry Blower", dryBlowerST);
+			calculateSubtotal("Wall Scrapper", wallS_ST);
+			calculateSubtotal("Tiles Waxes", tilesW_ST);
+			calculateSubtotal("Mud/Tar Remover", mudR_ST);
+			calculateSubtotal("Dry Blower", dryB_ST);
 			break;
 
 			case 3: printf("Please key in delivery destination's distance(KM)\n");
@@ -135,44 +133,44 @@ int main(void)
 					}
 					break;
 
-			case 4: total_bill = productGrandTotal + charges;
-					grand_total = total_bill + (total_bill * 0.1);
-					pay_amount = grand_total - (total_discount1);
-					pay_amount2 = grand_total - (total_discount2);
+			case 4: totalBill = product_GT + charges;
+					grandTotal = totalBill + (totalBill * 0.1);
+					payAmount1 = grandTotal - (discount1);
+					payAmount2 = grandTotal - (discount2);
 
                     printf("++==============++=====================++\n");
-                    printf("||   Payment    ||      Amount         ||\n");
+                    printf("||   Payment    ||       Amount        ||\n");
                     printf("++==============||=====================||\n");
-                    printf("||Total bill    ||      RM%.2f         ||\n", total_bill);
-					printf("||Grand Total   ||      RM%.2f         ||\n", grand_total);
+                    printf("|| Total bill   ||       RM%.2f        ||\n", totalBill);
+					printf("|| Grand Total  ||       RM%.2f        ||\n", grandTotal);
                     printf("++=====================================++\n");
 
-					if (membership_status == 1 && total_bill >= 800 && total_bill <= 1000)
+					if (membership == 1 && totalBill >= 800 && totalBill <= 1000)
 					{
 						printf("10%% Discount will be given\n");
-						printf("Total discount:RM%.2f \n\n", total_discount1);
-						printf("The total amount is RM%.2f\n", pay_amount);
+						printf("Total discount:RM%.2f \n\n", discount1);
+						printf("The total amount is RM%.2f\n", payAmount1);
 
 					}
-					else if (membership_status == 1 && total_bill > 1000)
+					else if (membership == 1 && totalBill > 1000)
 					{
 						printf("12%% Discount will be given\n");
-						printf("Total discount: RM%.2f \n\n", total_discount2);
-						printf("The total amount is RM%.2f\n", pay_amount2);
+						printf("Total discount: RM%.2f \n\n", discount2);
+						printf("The total amount is RM%.2f\n", payAmount2);
 
 					}
-					else if (membership_status == 1 && total_bill < 800)
+					else if (membership == 1 && totalBill < 800)
 					{
 						printf("Although you're a member, but purchases are not over RM800\n");
 						printf("Hence, no discount will be given :( \n\n");
-						printf("The total amount is RM%.2f\n", grand_total);
+						printf("The total amount is RM%.2f\n", grandTotal);
 
 
 					}
 					else
 					{
 						printf("No discount will be given:(\n\n");
-						printf("The total amount is RM%.2f\n", grand_total);
+						printf("The total amount is RM%.2f\n", grandTotal);
 					}
 					break;
 
