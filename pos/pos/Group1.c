@@ -8,22 +8,9 @@ int option, end = 0;
 int code, anymoreItems, wallScrapper = 0, tilesWaxes = 0, mudtarRemover = 0, dryBlower = 0, quantity;
 double wallScrapperST, tilesWaxesST, mudtarRemoverST, dryBlowerST, productGrandTotal, total_bill, grand_total, total_discount1, total_discount2, pay_amount, pay_amount2, distance, charges;
 
-void keyInItems(const char itemName[]) {
-	printf("%s\n", itemName);
-	printf("Please key in quantity:\n");
-	scanf_s("%d", &quantity);
-}
-
-void askAnymoreItems() {
-	printf("Do you have any more items? Please input a number to select an option:\n");
-	printf("1.Yes\n");
-	printf("2.No\n");
-	scanf_s("%d", &anymoreItems);
-}
-
-void calculateSubtotal(const char subtotalName[], double subtotal) {
-	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal);
-}
+void keyInItems(const char itemName[]);
+void askAnymoreItems();
+void calculateSubtotal(const char subtotalName[], double subtotal);
 
 int main(void)
 {
@@ -199,4 +186,21 @@ int main(void)
 
 	_getch();
 	return 0;
+}
+
+void keyInItems(const char itemName[]) {
+	printf("%s\n", itemName);
+	printf("Please key in quantity:\n");
+	scanf_s("%d", &quantity);
+}
+
+void askAnymoreItems() {
+	printf("Do you have any more items? Please input a number to select an option:\n");
+	printf("1.Yes\n");
+	printf("2.No\n");
+	scanf_s("%d", &anymoreItems);
+}
+
+void calculateSubtotal(const char subtotalName[], double subtotal) {
+	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal);
 }
