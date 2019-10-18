@@ -40,7 +40,8 @@ int main(void)
 
     printf("Enter any key to continue: \n\n\n");
 
-    getch();
+    _getch();
+
 	printf("Hi, we are the Best Price Mall which has the best price in the market. \n");
 	printf("The below are the promotions that we are having in our store.\n\n");
     printf("Member discounts:\n");
@@ -49,7 +50,7 @@ int main(void)
     printf("(condition applies only for available for members)\n\n");
     printf("Enter any key to continue: \n");
 
-    getch();
+    _getch();
 
 	printf("Please select your membership status :\n");
 	printf("1 ---> Member\n");
@@ -92,7 +93,7 @@ int main(void)
 
 			case 2: do	{
                 printf("\nPlease key in product code:\n");
-                scanf("%d", &code);
+                scanf_s("%d", &code);
                 if (code == 101) {
                   keyInItems("Wall Scrapper");
                   wallScrapper += quantity;
@@ -108,10 +109,11 @@ int main(void)
                   mudtarRemover += quantity;
                   askAnymoreItems();
                 }
-                else if (code == 404) {
-                  keyInItems("Dry Blower");
-                  dryBlower += quantity;
-                  askAnymoreItems();
+				else if (code == 404) {
+					keyInItems("Dry Blower");
+					dryBlower += quantity;
+					askAnymoreItems();
+				}
                 else {
                   printf("Error 404 Product Not Found!");
                 }
@@ -130,29 +132,26 @@ int main(void)
 			break;
 
 			case 3: printf("Please key in delivery destination's distance(KM)\n");
-              scanf("%lf", &distance);
+					scanf_s("%lf", &distance);
 
-              if (distance <= 30)
-              {
-                charges = 50.00;
-                printf("Your delivery charges is RM%.2lf\n", charges);
-              }
-              else if (distance > 30 && distance <= 100)
-              {
-                distance -= 30;
-                charges = 50 + distance * 3;
-                printf("Your delivery charges is RM%.2lf\n", charges);
-              }
-              else
-              {
-                printf("No delivery service available in your area.Sorry for any inconvenience.\n");
-              }
-              break;
+					if (distance <= 30) {
+						charges = 50.00;
+						printf("Your delivery charges is RM%.2lf\n", charges);
+					}
+					else if (distance > 30 && distance <= 100) {
+						distance -= 30;
+						charges = 50 + distance * 3;
+						printf("Your delivery charges is RM%.2lf\n", charges);
+					}
+					else {
+						printf("No delivery service available in your area.Sorry for any inconvenience.\n");
+					}
+					break;
 
 			case 4: total_bill = productGrandTotal + charges;
-              grand_total = total_bill + (total_bill * 0.1);
-              pay_amount = grand_total - (total_discount1);
-              pay_amount2 = grand_total - (total_discount2);
+					grand_total = total_bill + (total_bill * 0.1);
+					pay_amount = grand_total - (total_discount1);
+					pay_amount2 = grand_total - (total_discount2);
 
                     printf("++==============++=====================++\n");
                     printf("||   Payment    ||      Amount         ||\n");

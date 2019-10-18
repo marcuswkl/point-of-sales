@@ -1,4 +1,4 @@
 ﻿  Group1.cpp
-D:\Projects\GitHub\pointofsales\pos\pos\Group1.cpp(31): warning C4129: '.': unrecognized character escape sequence
-D:\Projects\GitHub\pointofsales\pos\pos\Group1.cpp(40): warning C4129: '_': unrecognized character escape sequence
+D:\Projects\GitHub\pointofsales\pos\pos\Group1.cpp(32): warning C4129: ' ': unrecognized character escape sequence
+  LINK : D:\Projects\GitHub\pointofsales\pos\Debug\pos.exe not found or not built by the last incremental link; performing full link
   pos.vcxproj -> D:\Projects\GitHub\pointofsales\pos\Debug\pos.exe
