@@ -6,9 +6,14 @@ char continueName;
 int membership;option, end = 0, code, anymoreItems, wallS = 0, tilesW = 0, mudR = 0, dryB = 0, quantity;
 double wallS_ST, tilesW_ST, mudR_ST, dryB_ST, product_GT, distance, charges, totalBill, grandTotal, discount1, discount2, payAmount1, payAmount2;
 
+// This function prompts the user to key in the quantity of their items.
 void keyInItems(const char itemName[]);
+
+// This function asks the user if they have anymore items.
 void askAnymoreItems();
-void calculateSubtotal(const char subtotalName[], double subtotal);
+
+// This function prints the subtotal of the items based on the calculated subtotal.
+void printSubtotal(const char subtotalName[], double subtotal);
 
 int main(void)
 {
@@ -37,22 +42,36 @@ int main(void)
 
     _getch();
 
-	printf("Please select your membership status :\n");
-	printf("1. Member\n");
-	printf("2. Non-member\n\n");
-	scanf_s(" %d", &membership);
-
-	if (membership == 1)
-	{
-		printf("Welcome back, Best Price's member.\n\n");
-	}
-
-	else
-	{
-		printf("Please join our membership to enjoy member's benefits.\n\n");
-	}
-
+// Asks the user for membership status.
+// Prints error if user input invalid number and asks the user again.
 	do {
+
+		printf("Please select your membership status by inputting numbers:\n");
+		printf("1. Member\n");
+		printf("2. Non-member\n\n");
+		scanf_s(" %d", &membership);
+
+		if (membership == 1)
+		{
+			printf("Welcome back, Best Price's member.\n\n");
+		}
+
+		else if (membership == 2)
+		{
+			printf("Please join our membership to enjoy member's benefits.\n\n");
+		}
+
+		else
+		{
+			printf("Error! Please input the numbers 1 or 2 only.\n");
+		}
+
+	} while (membership != 1 && membership != 2);
+
+// Asks the user to select an option.
+// User can keep selecting options until exit option is selected.
+	do {
+
 			printf("\nWhat do you want to do?\n");
 			printf("Select an option below by inputting numbers:\n");
 			printf("Option 1: Product and Price details\n");
@@ -65,6 +84,7 @@ int main(void)
 
 			switch (option) {
 
+// Displays a table of products with details.
 			case 1: printf("                                Product Details                              \n");
 					printf("++==============++=====================++==============++==================++\n");
 					printf("|| Product Code || Product Description || Retail Price || Special Discount ||\n");
@@ -76,46 +96,56 @@ int main(void)
 					printf("++==============++=====================++==============++==================++\n");
 					break;
 
+// Asks the user to input a product code, then asks the user to input quantity.
+// Prints error is user input invalid product code.
+// Asks the user if they have anymore items.
+// User can continue to input product code and quantity until they have no more items left.
 			case 2: do	{
-                printf("\nPlease key in product code:\n");
-                scanf_s("%d", &code);
-                if (code == 101) {
-                  keyInItems("Wall Scrapper");
-                  wallS += quantity;
-                  askAnymoreItems();
-                }
-                else if (code == 202) {
-                  keyInItems("Tiles Waxes");
-                  tilesW += quantity;
-                  askAnymoreItems();
-                }
-                else if (code == 303) {
-                  keyInItems("Mud/Tar Remover");
-                  mudR += quantity;
-                  askAnymoreItems();
-                }
-				else if (code == 404) {
-					keyInItems("Dry Blower");
-					dryB += quantity;
-					askAnymoreItems();
-				}
-                else {
-                  printf("Error 404 Product Not Found!");
-                }
+
+					printf("\nPlease key in product code:\n");
+					scanf_s("%d", &code);
+					if (code == 101) {
+					  keyInItems("Wall Scrapper");
+					  wallS += quantity;
+					  askAnymoreItems();
+					}
+					else if (code == 202) {
+					  keyInItems("Tiles Waxes");
+					  tilesW += quantity;
+					  askAnymoreItems();
+					}
+					else if (code == 303) {
+					  keyInItems("Mud/Tar Remover");
+					  mudR += quantity;
+					  askAnymoreItems();
+					}
+					else if (code == 404) {
+						keyInItems("Dry Blower");
+						dryB += quantity;
+						askAnymoreItems();
+					}
+					else {
+					  printf("Error 404 Product Not Found!");
+					}
+
               } while (anymoreItems == 1);
 
+// Calculates subtotal of items purchased based on product price and quantity.
 			wallS_ST = wallS * 100;
 			tilesW_ST = tilesW * 100;
 			mudR_ST = mudR * 100 * 0.8;
 			dryB_ST = dryB * 100 * 0.75;
 			product_GT = wallS_ST + tilesW_ST + mudR_ST + dryB_ST;
 
-			calculateSubtotal("Wall Scrapper", wallS_ST);
-			calculateSubtotal("Tiles Waxes", tilesW_ST);
-			calculateSubtotal("Mud/Tar Remover", mudR_ST);
-			calculateSubtotal("Dry Blower", dryB_ST);
+// Prints a list of subtotals for each product.
+			printSubtotal("Wall Scrapper", wallS_ST);
+			printSubtotal("Tiles Waxes", tilesW_ST);
+			printSubtotal("Mud/Tar Remover", mudR_ST);
+			printSubtotal("Dry Blower", dryB_ST);
 			break;
 
+// Asks the user to input their delivery destination's distrance in KM.
+// Calculates the delivery charges based on distance from user input.
 			case 3: printf("Please key in delivery destination's distance(KM)\n");
 					scanf_s("%lf", &distance);
 
@@ -133,6 +163,7 @@ int main(void)
 					}
 					break;
 
+// Calculates the grand total and discount given based on membership status and items purchased.
 			case 4: totalBill = product_GT + charges;
 					grandTotal = totalBill + (totalBill * 0.1);
 					payAmount1 = grandTotal - (discount1);
@@ -199,6 +230,6 @@ void askAnymoreItems() {
 	scanf_s("%d", &anymoreItems);
 }
 
-void calculateSubtotal(const char subtotalName[], double subtotal) {
+void printSubtotal(const char subtotalName[], double subtotal) {
 	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal);
 }
