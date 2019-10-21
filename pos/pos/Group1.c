@@ -3,9 +3,13 @@
 #include <conio.h>
 
 char continueName;
-int membership;option, end = 0, code, anymoreItems, wallS = 0, tilesW = 0, mudR = 0, dryB = 0, quantity;
-double wallS_ST, tilesW_ST, mudR_ST, dryB_ST, product_GT, distance, charges, totalBill, grandTotal, discount1, discount2, payAmount1, payAmount2;
-// Add array for common values
+int membership, option, end = 0, code, anymoreItems, quantity;
+double productGT, distance, charges, totalBill, grandTotal;
+
+int itemQuantity[4] = { 0, 0, 0, 0 }; // Wall Scrapper, Tiles Waxes, Mud/Tar Remover, Dry Blower
+double itemSubtotal[4]; // Wall Scrapper Subtotal, Tiles Waxes Subtotal, Mud/Tar Remover Subtotal, Dry Blower Subtotal
+double discount[2]; // 10% Discount, 12% Discount
+double payAmount[2]; // grandTotal - 10% Discount, grandTotal - 12% Discount
 
 void keyInItems(const char itemName[]);
 void askAnymoreItems();
@@ -102,22 +106,22 @@ int main(void)
 					scanf_s("%d", &code);
 					if (code == 101) {
 					  keyInItems("Wall Scrapper");
-					  wallS += quantity;
+					  itemQuantity[0] += quantity;
 					  askAnymoreItems();
 					}
 					else if (code == 202) {
 					  keyInItems("Tiles Waxes");
-					  tilesW += quantity;
+					  itemQuantity[1] += quantity;
 					  askAnymoreItems();
 					}
 					else if (code == 303) {
 					  keyInItems("Mud/Tar Remover");
-					  mudR += quantity;
+					  itemQuantity[2] += quantity;
 					  askAnymoreItems();
 					}
 					else if (code == 404) {
 						keyInItems("Dry Blower");
-						dryB += quantity;
+						itemQuantity[3] += quantity;
 						askAnymoreItems();
 					}
 					else {
@@ -127,17 +131,17 @@ int main(void)
               } while (anymoreItems == 1);
 
 // Calculates subtotal of items purchased based on product price and quantity.
-			wallS_ST = wallS * 100;
-			tilesW_ST = tilesW * 100;
-			mudR_ST = mudR * 100 * 0.8;
-			dryB_ST = dryB * 100 * 0.75;
-			product_GT = wallS_ST + tilesW_ST + mudR_ST + dryB_ST;
+			itemSubtotal[0] = itemQuantity[0] * 100;
+			itemSubtotal[1] = itemQuantity[1] * 350;
+			itemSubtotal[2] = itemQuantity[2] * 500 * 0.8;
+			itemSubtotal[3] = itemQuantity[3] * 800 * 0.75;
+			productGT = itemSubtotal[0] + itemSubtotal[1] + itemSubtotal[2] + itemSubtotal[3];
 
 // Prints a list of subtotals for each product.
-			printSubtotal("Wall Scrapper", wallS_ST);
-			printSubtotal("Tiles Waxes", tilesW_ST);
-			printSubtotal("Mud/Tar Remover", mudR_ST);
-			printSubtotal("Dry Blower", dryB_ST);
+			printSubtotal("Wall Scrapper", itemSubtotal[0]);
+			printSubtotal("Tiles Waxes", itemSubtotal[1]);
+			printSubtotal("Mud/Tar Remover", itemSubtotal[2]);
+			printSubtotal("Dry Blower", itemSubtotal[3]);
 			break;
 
 // Asks the user to input their delivery destination's distrance in KM.
@@ -160,32 +164,32 @@ int main(void)
 					break;
 
 // Calculates the grand total and discount given based on membership status and items purchased.
-			case 4: totalBill = product_GT + charges;
+			case 4: totalBill = productGT + charges;
 					grandTotal = totalBill + (totalBill * 0.1);
-					discount1 = grandTotal * 0.1;
-					discount2 = grandTotal * 0.12;
-					payAmount1 = grandTotal - (discount1);
-					payAmount2 = grandTotal - (discount2);
+					discount[0] = grandTotal * 0.1;
+					discount[1] = grandTotal * 0.12;
+					payAmount[0] = grandTotal - (discount[0]);
+					payAmount[1] = grandTotal - (discount[1]);
 
                     printf("++==============++=====================++\n");
                     printf("||   Payment    ||       Amount        ||\n");
                     printf("++==============||=====================||\n");
-                    printf("|| Total bill   ||       RM%.2f        ||\n", totalBill);
-					printf("|| Grand Total  ||       RM%.2f        ||\n", grandTotal);
+                    printf("|| Total bill   ||       RM%.2f     ||\n", totalBill);
+					printf("|| Grand Total  ||       RM%.2f     ||\n", grandTotal);
                     printf("++=====================================++\n");
 
 					if (membership == 1 && totalBill >= 800 && totalBill <= 1000)
 					{
 						printf("10%% Discount will be given\n");
-						printf("Total discount:RM%.2f \n\n", discount1);
-						printf("The total amount is RM%.2f\n", payAmount1);
+						printf("Total discount:RM%.2lf \n\n", discount[0]);
+						printf("The total amount is RM%.2lf\n", payAmount[0]);
 
 					}
 					else if (membership == 1 && totalBill > 1000)
 					{
 						printf("12%% Discount will be given\n");
-						printf("Total discount: RM%.2f \n\n", discount2);
-						printf("The total amount is RM%.2f\n", payAmount2);
+						printf("Total discount: RM%.2lf \n\n", discount[1]);
+						printf("The total amount is RM%.2lf\n", payAmount[1]);
 
 					}
 					else if (membership == 1 && totalBill < 800)
