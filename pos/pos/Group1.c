@@ -5,14 +5,10 @@
 char continueName;
 int membership;option, end = 0, code, anymoreItems, wallS = 0, tilesW = 0, mudR = 0, dryB = 0, quantity;
 double wallS_ST, tilesW_ST, mudR_ST, dryB_ST, product_GT, distance, charges, totalBill, grandTotal, discount1, discount2, payAmount1, payAmount2;
+// Add array for common values
 
-// This function prompts the user to key in the quantity of their items.
 void keyInItems(const char itemName[]);
-
-// This function asks the user if they have anymore items.
 void askAnymoreItems();
-
-// This function prints the subtotal of the items based on the calculated subtotal.
 void printSubtotal(const char subtotalName[], double subtotal);
 
 int main(void)
@@ -45,7 +41,7 @@ int main(void)
 // Asks the user for membership status.
 // Prints error if user input invalid number and asks the user again.
 	do {
-
+		// Change numbers to Y/N then use uppercase and lowercase function
 		printf("Please select your membership status by inputting numbers:\n");
 		printf("1. Member\n");
 		printf("2. Non-member\n\n");
@@ -166,6 +162,8 @@ int main(void)
 // Calculates the grand total and discount given based on membership status and items purchased.
 			case 4: totalBill = product_GT + charges;
 					grandTotal = totalBill + (totalBill * 0.1);
+					discount1 = grandTotal * 0.1;
+					discount2 = grandTotal * 0.12;
 					payAmount1 = grandTotal - (discount1);
 					payAmount2 = grandTotal - (discount2);
 
@@ -216,20 +214,22 @@ int main(void)
 	_getch();
 	return 0;
 }
-
+// This function prompts the user to key in the quantity of their items.
 void keyInItems(const char itemName[]) {
-	printf("%s\n", itemName);
+	printf("%s\n", itemName); // Prints the name of the item selected based on the product code.
 	printf("Please key in quantity:\n");
-	scanf_s("%d", &quantity);
+	scanf_s("%d", &quantity); // Stores the quantity input in quantity variable.
 }
 
+// This function asks the user if they have anymore items.
 void askAnymoreItems() {
 	printf("Do you have any more items? Please input a number to select an option:\n");
 	printf("1.Yes\n");
 	printf("2.No\n");
-	scanf_s("%d", &anymoreItems);
+	scanf_s("%d", &anymoreItems); // Stores the number input in anymoreItems variable.
 }
 
+// This function prints the subtotal of the items based on the calculated subtotal.
 void printSubtotal(const char subtotalName[], double subtotal) {
-	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal);
+	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal); // Prints the subtotal for the item.
 }
