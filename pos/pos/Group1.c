@@ -4,7 +4,7 @@
 
 char continueName;
 int membership, option, end = 0, code, anymoreItems, quantity;
-double productGT, distance, charges, totalBill, grandTotal;
+double productGT, distance, deliveryCharges, totalBill, grandTotal;
 
 int itemQuantity[4] = { 0, 0, 0, 0 }; // Wall Scrapper, Tiles Waxes, Mud/Tar Remover, Dry Blower
 double itemSubtotal[4]; // Wall Scrapper Subtotal, Tiles Waxes Subtotal, Mud/Tar Remover Subtotal, Dry Blower Subtotal
@@ -150,60 +150,56 @@ int main(void)
 					scanf_s("%lf", &distance);
 
 					if (distance <= 30) {
-						charges = 50.00;
-						printf("Your delivery charges is RM%.2lf\n", charges);
+						deliveryCharges = 50.00;
+						printf("Your delivery charges is RM%.2lf\n", deliveryCharges);
 					}
 					else if (distance > 30 && distance <= 100) {
 						distance -= 30;
-						charges = 50 + distance * 3;
-						printf("Your delivery charges is RM%.2lf\n", charges);
+						deliveryCharges = 50 + distance * 3;
+						printf("Your delivery charges is RM%.2lf\n", deliveryCharges);
 					}
 					else {
-						printf("No delivery service available in your area.Sorry for any inconvenience.\n");
+						printf("No delivery service available in your area. Sorry for any inconvenience.\n");
 					}
 					break;
 
 // Calculates the grand total and discount given based on membership status and items purchased.
-			case 4: totalBill = productGT + charges;
+			case 4: totalBill = productGT + deliveryCharges;
 					grandTotal = totalBill + (totalBill * 0.1);
 					discount[0] = grandTotal * 0.1;
 					discount[1] = grandTotal * 0.12;
 					payAmount[0] = grandTotal - (discount[0]);
 					payAmount[1] = grandTotal - (discount[1]);
 
-                    printf("++==============++=====================++\n");
-                    printf("||   Payment    ||       Amount        ||\n");
-                    printf("++==============||=====================||\n");
-                    printf("|| Total bill   ||       RM%.2f     ||\n", totalBill);
-					printf("|| Grand Total  ||       RM%.2f     ||\n", grandTotal);
-                    printf("++=====================================++\n");
+                    printf("Your total bill is RM%.2f\n", totalBill);
+					printf("Your grand total is RM%.2f\n", grandTotal);
 
 					if (membership == 1 && totalBill >= 800 && totalBill <= 1000)
 					{
 						printf("10%% Discount will be given\n");
 						printf("Total discount:RM%.2lf \n\n", discount[0]);
-						printf("The total amount is RM%.2lf\n", payAmount[0]);
+						printf("The pay amount is RM%.2lf\n", payAmount[0]);
 
 					}
 					else if (membership == 1 && totalBill > 1000)
 					{
 						printf("12%% Discount will be given\n");
 						printf("Total discount: RM%.2lf \n\n", discount[1]);
-						printf("The total amount is RM%.2lf\n", payAmount[1]);
+						printf("The pay amount is RM%.2lf\n", payAmount[1]);
 
 					}
 					else if (membership == 1 && totalBill < 800)
 					{
-						printf("Although you're a member, but purchases are not over RM800\n");
+						printf("Although you're a member, but  your purchases are not more than RM800\n");
 						printf("Hence, no discount will be given :( \n\n");
-						printf("The total amount is RM%.2f\n", grandTotal);
+						printf("The pay amount is RM%.2f\n", grandTotal);
 
 
 					}
 					else
 					{
 						printf("No discount will be given:(\n\n");
-						printf("The total amount is RM%.2f\n", grandTotal);
+						printf("The pay amount is RM%.2f\n", grandTotal);
 					}
 					break;
 
