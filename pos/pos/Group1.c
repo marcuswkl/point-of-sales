@@ -3,13 +3,30 @@
 #include <conio.h>
 
 char continueName;
-int membership;option, end = 0, code, anymoreItems, wallS = 0, tilesW = 0, mudR = 0, dryB = 0, quantity;
-double wallS_ST, tilesW_ST, mudR_ST, dryB_ST, product_GT, distance, charges, totalBill, grandTotal, discount1, discount2, payAmount1, payAmount2;
-// Add array for common values
+int membership, option, end = 0, code, anymoreItems, quantity;
+double productGT, distance, deliveryCharges, totalBill, grandTotal;
 
-void keyInItems(const char itemName[]);
+double discount[2]; // 10% Discount, 12% Discount
+double payAmount[2]; // grandTotal - 10% Discount, grandTotal - 12% Discount
+
+struct item {
+	int code;
+	char name[100];
+	double price;
+	int quantity;
+	double subtotal;
+	double discount;
+};
+
+struct item item1 = { 101, "Wall Scrapper", 100.00, 0, 0, 1 };
+struct item item2 = { 202, "Tiles Waxer", 350.00, 0, 0, 1 };
+struct item item3 = { 303, "Mud/Tar Remover", 500.00, 0, 0, 0.8 };
+struct item item4 = { 404, "Dry Blower", 850.00, 0, 0, 0.75 };
+
+void keyInItems(char itemName[]);
 void askAnymoreItems();
-void printSubtotal(const char subtotalName[], double subtotal);
+double calcSubtotal(char itemName[100], double itemSubtotal, int itemQuantity, double itemPrice, double itemDiscount);
+
 
 int main(void)
 {
@@ -28,7 +45,7 @@ int main(void)
 
     _getch();
 
-	printf("Hi, welcome to Best Price Mall which has the best price in the market. \n");
+	printf("Hi, welcome to Best Price Mall which has the best price in the market.\n");
 	printf("These are the promotions that we are having in our store.\n\n");
     printf("Member discounts:\n");
     printf("10%% Discount will be given for purchases more than RM800\n");
@@ -38,8 +55,8 @@ int main(void)
 
     _getch();
 
-// Asks the user for membership status.
-// Prints error if user input invalid number and asks the user again.
+	// Asks the user for membership status.
+	// Prints error if user input invalid number and asks the user again.
 	do {
 		// Change numbers to Y/N then use uppercase and lowercase function
 		printf("Please select your membership status by inputting numbers:\n");
@@ -64,8 +81,8 @@ int main(void)
 
 	} while (membership != 1 && membership != 2);
 
-// Asks the user to select an option.
-// User can keep selecting options until exit option is selected.
+	// Asks the user to select an option.
+	// User can keep selecting options until exit option is selected.
 	do {
 
 			printf("\nWhat do you want to do?\n");
@@ -80,7 +97,7 @@ int main(void)
 
 			switch (option) {
 
-// Displays a table of products with details.
+			// Displays a table of products with details.
 			case 1: printf("                                Product Details                              \n");
 					printf("++==============++=====================++==============++==================++\n");
 					printf("|| Product Code || Product Description || Retail Price || Special Discount ||\n");
@@ -92,121 +109,112 @@ int main(void)
 					printf("++==============++=====================++==============++==================++\n");
 					break;
 
-// Asks the user to input a product code, then asks the user to input quantity.
-// Prints error is user input invalid product code.
-// Asks the user if they have anymore items.
-// User can continue to input product code and quantity until they have no more items left.
+			// Asks the user to input a product code, then asks the user to input quantity.
+			// Prints error is user input invalid product code.
+			// Asks the user if they have anymore items.
+			// User can continue to input product code and quantity until they have no more items left.
 			case 2: do	{
 
 					printf("\nPlease key in product code:\n");
 					scanf_s("%d", &code);
-					if (code == 101) {
-					  keyInItems("Wall Scrapper");
-					  wallS += quantity;
-					  askAnymoreItems();
+					if (code == item1.code) {
+						keyInItems(item1.name);
+						item1.quantity += quantity;
+						askAnymoreItems();
 					}
-					else if (code == 202) {
-					  keyInItems("Tiles Waxes");
-					  tilesW += quantity;
-					  askAnymoreItems();
+					else if (code == item2.code) {
+						keyInItems(item2.name);
+						item2.quantity += quantity;
+						askAnymoreItems();
 					}
-					else if (code == 303) {
-					  keyInItems("Mud/Tar Remover");
-					  mudR += quantity;
-					  askAnymoreItems();
+					else if (code == item3.code) {
+						keyInItems(item3.name);
+						item3.quantity += quantity;
+						askAnymoreItems();
 					}
-					else if (code == 404) {
-						keyInItems("Dry Blower");
-						dryB += quantity;
+					else if (code == item4.code) {
+						keyInItems(item4.name);
+						item4.quantity += quantity;
 						askAnymoreItems();
 					}
 					else {
-					  printf("Error 404 Product Not Found!");
+					  printf("Error 404 Product Not Found! Please input a valid product code.");
 					}
 
               } while (anymoreItems == 1);
 
-// Calculates subtotal of items purchased based on product price and quantity.
-			wallS_ST = wallS * 100;
-			tilesW_ST = tilesW * 100;
-			mudR_ST = mudR * 100 * 0.8;
-			dryB_ST = dryB * 100 * 0.75;
-			product_GT = wallS_ST + tilesW_ST + mudR_ST + dryB_ST;
-
-// Prints a list of subtotals for each product.
-			printSubtotal("Wall Scrapper", wallS_ST);
-			printSubtotal("Tiles Waxes", tilesW_ST);
-			printSubtotal("Mud/Tar Remover", mudR_ST);
-			printSubtotal("Dry Blower", dryB_ST);
+			// Calculates subtotal of items purchased based on product price and quantity.
+			  calcSubtotal(item1.name, item1.subtotal, item1.quantity, item1.price, item1.discount);
+			  calcSubtotal(item2.name, item2.subtotal, item2.quantity, item2.price, item2.discount);
+			  calcSubtotal(item3.name, item3.subtotal, item3.quantity, item3.price, item3.discount);
+			  calcSubtotal(item4.name, item4.subtotal, item4.quantity, item4.price, item4.discount);
+			
+			productGT = item1.subtotal + item2.subtotal + item3.subtotal + item4.subtotal;
 			break;
 
-// Asks the user to input their delivery destination's distrance in KM.
-// Calculates the delivery charges based on distance from user input.
-			case 3: printf("Please key in delivery destination's distance(KM)\n");
+			// Asks the user to input their delivery destination's distrance in KM.
+			// Calculates the delivery charges based on distance from user input.
+			case 3: printf("Please key in delivery destination's distance (KM):\n");
 					scanf_s("%lf", &distance);
 
 					if (distance <= 30) {
-						charges = 50.00;
-						printf("Your delivery charges is RM%.2lf\n", charges);
+						deliveryCharges = 50.00;
+						printf("Your delivery charges is RM%.2lf.\n", deliveryCharges);
 					}
 					else if (distance > 30 && distance <= 100) {
 						distance -= 30;
-						charges = 50 + distance * 3;
-						printf("Your delivery charges is RM%.2lf\n", charges);
+						deliveryCharges = 50 + distance * 3;
+						printf("Your delivery charges is RM%.2lf.\n", deliveryCharges);
 					}
 					else {
-						printf("No delivery service available in your area.Sorry for any inconvenience.\n");
+						printf("No delivery service available in your area. Sorry for any inconvenience.\n");
 					}
 					break;
 
 // Calculates the grand total and discount given based on membership status and items purchased.
-			case 4: totalBill = product_GT + charges;
+			case 4: totalBill = productGT + deliveryCharges;
 					grandTotal = totalBill + (totalBill * 0.1);
-					discount1 = grandTotal * 0.1;
-					discount2 = grandTotal * 0.12;
-					payAmount1 = grandTotal - (discount1);
-					payAmount2 = grandTotal - (discount2);
+					discount[0] = grandTotal * 0.1;
+					discount[1] = grandTotal * 0.12;
+					payAmount[0] = grandTotal - (discount[0]);
+					payAmount[1] = grandTotal - (discount[1]);
 
-                    printf("++==============++=====================++\n");
-                    printf("||   Payment    ||       Amount        ||\n");
-                    printf("++==============||=====================||\n");
-                    printf("|| Total bill   ||       RM%.2f        ||\n", totalBill);
-					printf("|| Grand Total  ||       RM%.2f        ||\n", grandTotal);
-                    printf("++=====================================++\n");
+                    printf("Your total bill is RM%.2f\n", totalBill);
+					printf("Your grand total is RM%.2f\n", grandTotal);
 
 					if (membership == 1 && totalBill >= 800 && totalBill <= 1000)
 					{
-						printf("10%% Discount will be given\n");
-						printf("Total discount:RM%.2f \n\n", discount1);
-						printf("The total amount is RM%.2f\n", payAmount1);
+						printf("10%% Discount will be given.\n");
+						printf("Total discount:RM%.2lf.\n\n", discount[0]);
+						printf("The pay amount is RM%.2lf.\n", payAmount[0]);
 
 					}
 					else if (membership == 1 && totalBill > 1000)
 					{
-						printf("12%% Discount will be given\n");
-						printf("Total discount: RM%.2f \n\n", discount2);
-						printf("The total amount is RM%.2f\n", payAmount2);
+						printf("12%% Discount will be given.\n");
+						printf("Total discount: RM%.2lf.\n\n", discount[1]);
+						printf("The pay amount is RM%.2lf.\n", payAmount[1]);
 
 					}
 					else if (membership == 1 && totalBill < 800)
 					{
-						printf("Although you're a member, but purchases are not over RM800\n");
-						printf("Hence, no discount will be given :( \n\n");
-						printf("The total amount is RM%.2f\n", grandTotal);
+						printf("Although you're a member, but  your purchases are not more than RM800.\n");
+						printf("Hence, no discount will be given.\n\n");
+						printf("The pay amount is RM%.2f.\n", grandTotal);
 
 
 					}
 					else
 					{
 						printf("No discount will be given:(\n\n");
-						printf("The total amount is RM%.2f\n", grandTotal);
+						printf("The pay amount is RM%.2f.\n", grandTotal);
 					}
 					break;
 
 			case 5: end = 1;
 					break;
 
-			default: printf("404 Option Not Found!");
+			default: printf("Error 404 Option Not Found! Please select a valid option.");
 			}
 	} while (end == 0);
 	exit(0);
@@ -215,7 +223,7 @@ int main(void)
 	return 0;
 }
 // This function prompts the user to key in the quantity of their items.
-void keyInItems(const char itemName[]) {
+void keyInItems(char itemName[]) {
 	printf("%s\n", itemName); // Prints the name of the item selected based on the product code.
 	printf("Please key in quantity:\n");
 	scanf_s("%d", &quantity); // Stores the quantity input in quantity variable.
@@ -229,7 +237,8 @@ void askAnymoreItems() {
 	scanf_s("%d", &anymoreItems); // Stores the number input in anymoreItems variable.
 }
 
-// This function prints the subtotal of the items based on the calculated subtotal.
-void printSubtotal(const char subtotalName[], double subtotal) {
-	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal); // Prints the subtotal for the item.
+// This function calculates and prints the subtotal of the items.
+double calcSubtotal(char itemName[100], double itemSubtotal, int itemQuantity, double itemPrice, double itemDiscount) {
+	itemSubtotal = itemQuantity * itemPrice * itemDiscount;
+	printf("Your subtotal for %s is RM%.2lf.\n", itemName, itemSubtotal); // Prints the subtotal for the item.
 }
