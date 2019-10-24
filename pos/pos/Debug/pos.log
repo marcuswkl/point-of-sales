@@ -1,3 +1,4 @@
 ﻿  Group1.c
-D:\Projects\GitHub\pointofsales\pos\pos\Group1.c(22): warning C4129: ' ': unrecognized character escape sequence
+D:\Projects\GitHub\pointofsales\pos\pos\Group1.c(35): warning C4129: ' ': unrecognized character escape sequence
+D:\Projects\GitHub\pointofsales\pos\pos\Group1.c(244): warning C4716: 'calcSubtotal': must return a value
   pos.vcxproj -> D:\Projects\GitHub\pointofsales\pos\Debug\pos.exe
