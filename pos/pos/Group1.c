@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <conio.h>
 
-char continueName;
 int membership, option, end = 0, code, anymoreItems, quantity;
 double productGT, distance, deliveryCharges, totalBill, grandTotal;
 
 double discount[2]; // 10% Discount, 12% Discount
 double payAmount[2]; // grandTotal - 10% Discount, grandTotal - 12% Discount
 
+
+// Item struct with product code, product name, product price, product quantity, product subtotal and percentage of product price after discount.
 struct item {
 	int code;
 	char name[100];
@@ -17,16 +18,16 @@ struct item {
 	double subtotal;
 	double discount;
 };
-
+ 
 struct item item1 = { 101, "Wall Scrapper", 100.00, 0, 0, 1 };
 struct item item2 = { 202, "Tiles Waxer", 350.00, 0, 0, 1 };
 struct item item3 = { 303, "Mud/Tar Remover", 500.00, 0, 0, 0.8 };
 struct item item4 = { 404, "Dry Blower", 850.00, 0, 0, 0.75 };
 
+// Refer to function definition after main() function below
 void keyInItems(char itemName[]);
 void askAnymoreItems();
-double calcSubtotal(char itemName[100], double itemSubtotal, int itemQuantity, double itemPrice, double itemDiscount);
-
+void printSubtotal(const char subtotalName[], double subtotal);
 
 int main(void)
 {
@@ -41,16 +42,16 @@ int main(void)
 	printf("_  /_/ //  __/(__  )/ /_ _  ____/_  /   _  / / /__ /  __/     _  /  / / / /_/ /_  / _  /  \n");
     printf("/_____/ \\___//____/ \\__/ /_/     /_/    /_/  \\___/ \\___/      /_/  /_/  \\__,_/ /_/  /_/   \n\n\n");
 
-    printf("Enter any key to continue: \n\n\n");
+    printf("Enter any key to continue: \n\n");
 
     _getch();
 
 	printf("Hi, welcome to Best Price Mall which has the best price in the market.\n");
 	printf("These are the promotions that we are having in our store.\n\n");
     printf("Member discounts:\n");
-    printf("10%% Discount will be given for purchases more than RM800\n");
-    printf("12%% Discount will be given for purchases more than RM1000\n");
-    printf("(condition applies only for available for members)\n\n");
+    printf("10%% Discount will be given for purchases more than RM800.\n");
+    printf("12%% Discount will be given for purchases more than RM1000.\n");
+    printf("Discounts are not available for non-members.\n\n");
     printf("Enter any key to continue: \n");
 
     _getch();
@@ -144,15 +145,23 @@ int main(void)
               } while (anymoreItems == 1);
 
 			// Calculates subtotal of items purchased based on product price and quantity.
-			  calcSubtotal(item1.name, item1.subtotal, item1.quantity, item1.price, item1.discount);
-			  calcSubtotal(item2.name, item2.subtotal, item2.quantity, item2.price, item2.discount);
-			  calcSubtotal(item3.name, item3.subtotal, item3.quantity, item3.price, item3.discount);
-			  calcSubtotal(item4.name, item4.subtotal, item4.quantity, item4.price, item4.discount);
+			item1.subtotal = item1.quantity * item1.price;
+			item2.subtotal = item2.quantity * item2.price;
+			item3.subtotal = item3.quantity * item3.price * item3.discount;
+			item4.subtotal = item4.quantity * item4.price * item4.discount;
+			productGT = item1.subtotal + item2.subtotal + item3.subtotal + item4.subtotal;
+
+			// Prints a list of subtotals for each product.
+			printSubtotal(item1.name, item1.subtotal);
+			printSubtotal(item2.name, item2.subtotal);
+			printSubtotal(item3.name, item3.subtotal);
+			printSubtotal(item4.name, item4.subtotal);
 			
 			productGT = item1.subtotal + item2.subtotal + item3.subtotal + item4.subtotal;
+			printf("Your grand total of all the products is RM%.2lf.\n", productGT);
 			break;
 
-			// Asks the user to input their delivery destination's distrance in KM.
+			// Asks the user to input their delivery destination's distance in KM.
 			// Calculates the delivery charges based on distance from user input.
 			case 3: printf("Please key in delivery destination's distance (KM):\n");
 					scanf_s("%lf", &distance);
@@ -179,8 +188,8 @@ int main(void)
 					payAmount[0] = grandTotal - (discount[0]);
 					payAmount[1] = grandTotal - (discount[1]);
 
-                    printf("Your total bill is RM%.2f\n", totalBill);
-					printf("Your grand total is RM%.2f\n", grandTotal);
+                    printf("Your total bill is RM%.2f.\n", totalBill);
+					printf("Your grand total is RM%.2f.\n", grandTotal);
 
 					if (membership == 1 && totalBill >= 800 && totalBill <= 1000)
 					{
@@ -237,8 +246,7 @@ void askAnymoreItems() {
 	scanf_s("%d", &anymoreItems); // Stores the number input in anymoreItems variable.
 }
 
-// This function calculates and prints the subtotal of the items.
-double calcSubtotal(char itemName[100], double itemSubtotal, int itemQuantity, double itemPrice, double itemDiscount) {
-	itemSubtotal = itemQuantity * itemPrice * itemDiscount;
-	printf("Your subtotal for %s is RM%.2lf.\n", itemName, itemSubtotal); // Prints the subtotal for the item.
+// This function prints the subtotal of the items based on the calculated subtotal.
+void printSubtotal(const char subtotalName[], double subtotal) {
+	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal); // Prints the subtotal for the item.
 }
