@@ -220,7 +220,9 @@ int main(void)
 					}
 					break;
 
-			case 5: end = 1;
+			case 5: printf("Thank you for choosing Best Price!\n");
+					printf("We look forward to your continous patronage!\n");
+					end = 1;
 					break;
 
 			default: printf("Error 404 Option Not Found! Please select a valid option.");
