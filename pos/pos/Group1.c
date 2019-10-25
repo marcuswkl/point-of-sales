@@ -214,7 +214,7 @@ int main(void)
 					break;
 
 			case 5: printf("Thank you for choosing Best Price!\n");
-					printf("We look forward to your continous patronage!\n");
+					printf("We look forward to your continuous patronage!\n");
 					_getch();
 					end = 1;
 					break;
