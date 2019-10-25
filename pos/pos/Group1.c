@@ -9,14 +9,14 @@ double discount[2]; // 10% Discount, 12% Discount
 double payAmount[2]; // grandTotal - 10% Discount, grandTotal - 12% Discount
 
 
-// Item struct with product code, product name, product price, product quantity, product subtotal and percentage of product price after discount.
+// Item struct for products
 struct item {
-	int code;
-	char name[100];
-	double price;
-	int quantity;
-	double subtotal;
-	double discount;
+	int code; // product code
+	char name[100]; // product name
+	double price; // product price
+	int quantity; // product quantity
+	double subtotal; // product subtotal
+	double discount; // percentage of product price after discount
 };
  
 struct item item1 = { 101, "Wall Scrapper", 100.00, 0, 0, 1 };
@@ -27,7 +27,7 @@ struct item item4 = { 404, "Dry Blower", 850.00, 0, 0, 0.75 };
 // Refer to function definition after main() function below
 void keyInItems(char itemName[]);
 void askAnymoreItems();
-void printSubtotal(const char subtotalName[], double subtotal);
+struct item calcSubtotal(struct item item);
 
 int main(void)
 {
@@ -144,19 +144,14 @@ int main(void)
 
               } while (anymoreItems == 1);
 
-			// Calculates subtotal of items purchased based on product price and quantity.
-			item1.subtotal = item1.quantity * item1.price;
-			item2.subtotal = item2.quantity * item2.price;
-			item3.subtotal = item3.quantity * item3.price * item3.discount;
-			item4.subtotal = item4.quantity * item4.price * item4.discount;
-			productGT = item1.subtotal + item2.subtotal + item3.subtotal + item4.subtotal;
-
-			// Prints a list of subtotals for each product.
-			printSubtotal(item1.name, item1.subtotal);
-			printSubtotal(item2.name, item2.subtotal);
-			printSubtotal(item3.name, item3.subtotal);
-			printSubtotal(item4.name, item4.subtotal);
+			// Calculates and prints the subtotal of items purchased.
+			// Assigns the calculated subtotal to each respective item structure subtotal members.
+			item1 = calcSubtotal(item1);
+			item2 = calcSubtotal(item2);
+			item3 = calcSubtotal(item3);
+			item4 = calcSubtotal(item4);
 			
+			// Calculates the grand total of all the product subtotals.
 			productGT = item1.subtotal + item2.subtotal + item3.subtotal + item4.subtotal;
 			printf("Your grand total of all the products is RM%.2lf.\n", productGT);
 			break;
@@ -210,8 +205,6 @@ int main(void)
 						printf("Although you're a member, but  your purchases are not more than RM800.\n");
 						printf("Hence, no discount will be given.\n\n");
 						printf("The pay amount is RM%.2f.\n", grandTotal);
-
-
 					}
 					else
 					{
@@ -248,7 +241,9 @@ void askAnymoreItems() {
 	scanf_s("%d", &anymoreItems); // Stores the number input in anymoreItems variable.
 }
 
-// This function prints the subtotal of the items based on the calculated subtotal.
-void printSubtotal(const char subtotalName[], double subtotal) {
-	printf("Your subtotal for %s is RM%.2lf\n", subtotalName, subtotal); // Prints the subtotal for the item.
+// This function calculates and prints the subtotal of the items.
+struct item calcSubtotal(struct item item) {
+	item.subtotal = item.quantity * item.price * item.discount; // Calculates the subtotal for the item.
+	printf("Your subtotal for %s is RM%.2lf.\n", item.name, item.subtotal); // Prints the subtotal for the item.
+	return item;
 }
