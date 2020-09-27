@@ -1,33 +1,4 @@
 # pointofsales
-## DIPLOMA IN INFORMATION TECHNOLOGY
----
-## COURSEWORK: ASSIGNMENT 1
-
-### Subject: PROGRAMMING CONCEPTS AND PROBLEM SOLVING  
-### Subject code: DIT 1253  
-### Due Date: 28th Oct 2019       
-
-<u>**INSTRUCTIONS TO CANDIDATES**</u>
-    
-•	This assignment will contribute 35% to your final grade.
-___
-You are required to complete the question below. Name your C program file as **GroupNo.cpp** (for example: Group1.cpp, only one submission per group), filename should be **without spaces and not more than 15 characters**. You are required to:
-
-•	Submit the **softcopy** of the C program file (*.c) to E-Learn  
-(Note: only the ‘.c’ file, not the whole project). Submission folder will be opened ONE (1) week before the due date.
-
-•	Upon submission of the **hardcopy**, you are required to submit the following:  
-i.	Cover page  
-ii.	Marking scheme  
-iii. C source code  
-iv.	Sample output  
-v.	Flowchart and pseudocode for Option 1  
-vi.	PAC for option 2  
-
-Important: Marks will be deducted for not adhering to the instructions. 
-___
-<u>**Question**</u>
-
 Build a simulation of “Point of Sales” C program for annual sales for **BestPrice** mall that fulfil the below requirements:
 
 1.	Print a unique greeting message and the mall simple logo for your point of sales program. Prompt user to know either they have membership with the mall.
@@ -88,7 +59,3 @@ NOTES:
 1.	You are encouraged to improve your code structure by using any additional controls, validations, or messages which you think it’s relevant and appropriate.
 2.	You are allowed to have variances of display design, arrangement or format, as long as it fulfilled the requirement stated above.
 3.	Include internal comments where possible within your code.
-
-
-
-
