@@ -1,4 +1,4 @@
-# pointofsales
+# point-of-sales
 Build a simulation of “Point of Sales” C program for annual sales for **BestPrice** mall that fulfil the below requirements:
 
 1.	Print a unique greeting message and the mall simple logo for your point of sales program. Prompt user to know either they have membership with the mall.
